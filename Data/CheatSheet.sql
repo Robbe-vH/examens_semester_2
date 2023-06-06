@@ -1,6 +1,6 @@
 /* 
 Normalisatie:
-1NV: Verwijder de zich herhalendedeelverzamelingen
+1NV: Verwijder de zich herhalende deelverzamelingen
 2NV: Verwijder de gedeeltelijke afhankelijkheden
 3NV: Verwijder de attributen die ook functioneel afhankelijk zijn vanander (niet-sleutel) attributen – transitieve afhankelijkheden
 
@@ -12,7 +12,7 @@ Doe het volgende tot er geen nieuwe groepen zijn:
     - Geef de deelverzameling aan die een herhaald aantal keren voorkomt
 
 2NV:
-Verwijder de attributen diefunctioneel afhankelijk zijn vanslechts een gedeelte van de sleutel
+Verwijder de attributen die functioneel afhankelijk zijn van slechts een gedeelte van de sleutel
 Alleen groepen met een samengestelde sleutel komen in aanmerking!
 
 3NV:
@@ -80,6 +80,16 @@ CREATE TABLE afdelingen(
     hoofd       NUMBER(4)       constraint A_HOOFD_FK   references medewerker
 );
 
+-- Constraint uitschakelen
+
+ALTER TABLE medewerkers
+NOCHECK CONSTRAINT MED_AFD_FK
+
+-- Constraint inschakelen
+
+ALTER TABLE medewerkers
+CHECK CONSTRAINT MED_AFD_F
+
 -- Datatypes:
 
 Data type	        Description	                            Max size	                Storage
@@ -118,3 +128,7 @@ MINVALUE 105
 MAXVALUE 1006 
 CYCLE 7 
 CACHE 5;
+
+
+-- Hash
+Get-FileHash -Path C:\buh -Algorithm MD5
